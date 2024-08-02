@@ -3,6 +3,9 @@ const { input } = require('@inquirer/prompts');
 import type { PluginOption } from 'vite';
 import { isProduction } from './utils';
 import { getGitBranch } from './utils/getGinInfo';
+import { getUserInfo } from './utils/getUserInfo';
+import { execSync } from 'child_process';
+import path from 'path';
 interface UserOptions {
     start:boolean,
     checkGit:boolean,
@@ -106,18 +109,17 @@ export default function vitePluginTemplate(userOptions:UserOptions): PluginOptio
             if(branch){
                 console.log(branch,'branch');
                 // const { Command } = require('commander');
-                function askQuestion() {
+                // getUserInfo()
+                const paths = path.resolve('./scripts/a.js')
+                console.log(path.resolve('./scripts/a.js'));
+                //  path.resolve('.././scripts/a.js')
                 
-                    try {
-                        const answer = input({ message: 'Enter your name' });
-                        console.log(answer);
-                        
-                    } catch (error) {
-                        
-                    }
+                try {
+                    execSync(`node ${paths}`,{ stdio: 'inherit' })
+                } catch (error) {
+                    console.log(error);
+                    
                 }
-                
-                askQuestion()
 
                 console.log('test');
                 
@@ -127,7 +129,7 @@ export default function vitePluginTemplate(userOptions:UserOptions): PluginOptio
                         }else{
                             
                         }
-                        console.log('sbsbsbsbsbs');
+        console.log('sbsbsbsbsbs');
                         
                     },
                 };

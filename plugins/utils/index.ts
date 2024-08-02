@@ -1,3 +1,5 @@
 export * from './isPro'
 export * from './getGinInfo'
 export * from './getVersion'
+export * from './getUserInfo'
+export * from './testVersion'
