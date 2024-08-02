@@ -18,6 +18,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { visualizer } from 'rollup-plugin-visualizer'
 import ViteRestart from 'vite-plugin-restart'
 
+import vitePluginTemplate from './plugins/index'
 // https://vitejs.dev/config/
 export default ({ command, mode }) => {
   // console.log(mode === process.env.NODE_ENV) // true
@@ -63,6 +64,14 @@ export default ({ command, mode }) => {
       UniManifest(),
       // UniXXX 需要在 Uni 之前引入
       Uni(),
+
+      vitePluginTemplate({
+        start: VITE_START_UPLOAD ? true : false,
+        checkGit:true
+      }),
+
+
+
       {
         // 临时解决 dcloudio 官方的 @dcloudio/uni-mp-compiler 出现的编译 BUG
         // 参考 github issue: https://github.com/dcloudio/uni-app/issues/4952
@@ -156,3 +165,5 @@ export default ({ command, mode }) => {
     },
   })
 }
+
+
